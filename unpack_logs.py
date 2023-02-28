@@ -2,8 +2,6 @@ import glob
 from zipfile import ZipFile
 import os
 import sys
-import re
-
 
 def unzip_grizzly_logs():
     print("Extracting grizzly logs...")
@@ -30,16 +28,10 @@ def unzip_instance_logs():
     for file in os.listdir():
         if file.startswith("logs_") and file.endswith(".zip"):
             zipped_dir = file
-
+            break
     with ZipFile(zipped_dir, "r") as zip:
-        zip.extractall()
-    
-    unzipped_dir = zipped_dir.replace(".zip", "")
-
-    for file in os.listdir(unzipped_dir):
-        with ZipFile(file, "r") as zip:
-            zip.extractall(file + "_extracted")
-        os.remove(file)
+        zip.extractall(zipped_dir.replace(".zip", ""))
+    os.remove(zipped_dir)
     
 
 def unzip_db_dump():
@@ -60,10 +52,8 @@ def concatenate_log_files():
 if __name__ == "__main__":
     unzip_grizzly_logs()
     rename_log_files()
-    '''
     unzip_instance_logs()
     unzip_db_dump()
-    '''
     if "-concat" in sys.argv:
         concatenate_log_files()
     print("DONE!")
