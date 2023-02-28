@@ -1,4 +1,4 @@
 # Extract-logs
 
 ## TODO
-[ ] Test unpacking instance logs
+- [ ] Test unpacking instance logs
