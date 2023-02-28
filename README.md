@@ -1,4 +1,4 @@
 # Extract-logs
 
-## TODO
-- [ ] Test unpacking instance logs
+### Python script to automate extraction of HYCU customer logs
+
